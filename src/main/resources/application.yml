@@ -1,0 +1,33 @@
+zuul:
+  
+  prefix: /api
+  routes:
+    springboot-dockerized-application:
+      path: /students
+      serviceId: SPRINGBOOT-DOCKERIZED-APPLICATION
+    spring-boot-sleuth:
+      path: /students
+      serviceId: SPRING-BOOT-SLEUTH
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    hostname: localhost
+
+server:
+  port: 2000
+
+spring:
+  application:
+    name: spring-boot-zuul
+
+# Increase the Hystrix timeout to 60s (for all)
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
